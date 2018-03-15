@@ -5,7 +5,7 @@ with open('README.rst', 'rb') as f:
 
 setup(
     name='fifslack-bitbucket-pr-reminder',
-    version='0.0.3',
+    version='0.0.4',
     url='http://github.com/ordenador/fifslack-bitbucket-pr-reminder',
     author='Mario Faundez',
     author_email='mariofaundez@hotmail.com',
@@ -14,7 +14,7 @@ setup(
     py_modules=['fifslack_bitbucket_pr_reminder'],
     license='MIT',
     install_requires=[
-        'fifbucket==0.5',
+        'fifbucket==0.6',
         'slackclient==1.1.3'
     ],
     entry_points='''
