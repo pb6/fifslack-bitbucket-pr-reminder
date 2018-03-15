@@ -4,21 +4,21 @@ with open('README.rst', 'rb') as f:
     readme = f.read().decode('utf-8')
 
 setup(
-    name='slack-pull-reminder',
-    version='0.1.2',
-    url='http://github.com/ekmartin/slack-pull-reminder',
-    author='Martin Ek',
-    author_email='mail@ekmartin.com',
+    name='fifslack-bitbucket-pr-reminder',
+    version='0.0.1',
+    url='http://github.com/ordenador/fifslack-bitbucket-pr-reminder',
+    author='Mario Faundez',
+    author_email='mariofaundez@hotmail.com',
     description='Posts a Slack reminder with a list of open pull requests for an organization',
     long_description=readme,
-    py_modules=['slack_pull_reminder'],
+    py_modules=['fifslack_bitbucket_pr_reminder'],
     license='MIT',
     install_requires=[
-        'requests==2.18.3',
-        'github3.py==1.0.0a4'
+        'fifbucket==0.4',
+        'slackclient==1.1.3'
     ],
     entry_points='''
         [console_scripts]
-        slack-pull-reminder=slack_pull_reminder:cli
+        fifslack-bitbucket-pr-reminder=fifslack_bitbucket_pr_reminder:cli
     '''
 )

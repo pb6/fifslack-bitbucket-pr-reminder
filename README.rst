@@ -1,4 +1,4 @@
-slack-pull-reminder
+fifslack-bitbucket-pr-reminder
 ===================
 
     Posts a Slack reminder with a list of open pull requests for an
@@ -11,26 +11,25 @@ Installation
 
 .. code:: bash
 
-    $ pip install slack-pull-reminder
+    $ pip install fifslack-bitbucket-pr-reminder
 
 Usage
 -----
 
-slack-pull-reminder is configured using environment variables:
+fifslack-bitbucket-pr-reminder is configured using environment variables:
 
 Required
 ~~~~~~~~
 
 -  ``SLACK_API_TOKEN``
--  ``GITHUB_API_TOKEN``
--  ``ORGANIZATION``: The GitHub organization you want pull request
-   reminders for.
+-  ``BITBUCKET_USER``
+-  ``BUTBUCKET_PASSWORD``
+-  ``REPOSITORY``: Bitbucket repository
+-  ``OWNER``: Bitbucket owner username
 
 Optional
 ~~~~~~~~
 
--  ``IGNORE_WORDS``: A comma-separated list of words that will cause a
-   pull request to be ignored.
 -  ``SLACK_CHANNEL``: The Slack channel you want the reminders to be
    posted in, defaults to #general.
 
@@ -39,26 +38,26 @@ Example
 
 .. code:: bash
 
-    $ ORGANIZATION="orgname" SLACK_API_TOKEN="token" GITHUB_API_TOKEN="token" slack-pull-reminder
+    $ OWNER="orgname" SLACK_API_TOKEN="token" BITBUCKET_USER="user" BUTBUCKET_PASSWORD="password" REPOSITORY="repo" fifslack-bitbucket-pr-reminder
 
 Cronjob
 ~~~~~~~
 
-As slack-pull-reminder only runs once and exits, it's recommended to run
+As fifslack-bitbucket-pr-reminder only runs once and exits, it's recommended to run
 it regularly using for example a cronjob.
 
-Example that runs slack-pull-reminder every day at 10:00:
+Example that runs fifslack-bitbucket-pr-reminder every day at 10:00:
 
 .. code:: bash
 
-    0 10 * * * ORGANIZATION="orgname" SLACK_API_TOKEN="token" GITHUB_API_TOKEN="token" slack-pull-reminder
+    0 10 * * * OWNER="orgname" SLACK_API_TOKEN="token" BITBUCKET_USER="user" BUTBUCKET_PASSWORD="password" REPOSITORY="repo" fifslack-bitbucket-pr-reminder
 
 License
 -------
 
 (The MIT License)
 
-Copyright (c) Martin Ek mail@ekmartin.com
+Copyright (c) Mario Faundez mariofaundez@hotmail.com
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
