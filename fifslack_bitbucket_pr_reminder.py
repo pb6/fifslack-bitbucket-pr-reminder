@@ -45,13 +45,13 @@ def get_pr_info(repository):
 
 
 def format_pull_requests():
-    bitbucket = Bitbucket(
-        owner=OWNER, username=BITBUCKET_USER, password=BUTBUCKET_PASSWORD)
     lines = []
     if REPOS[0]:
         for repo in REPOS:
             lines = lines + get_pr_info(repo)
     else:
+        bitbucket = Bitbucket(
+            owner=OWNER, username=BITBUCKET_USER, password=BUTBUCKET_PASSWORD)
         for repo in bitbucket.get_repos()['values']:
             lines = lines + get_pr_info(repo['name'])
     return lines
