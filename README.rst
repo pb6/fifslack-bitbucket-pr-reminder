@@ -31,14 +31,15 @@ Optional
 
 -  ``SLACK_CHANNEL``: The Slack channel you want the reminders to be
    posted in, defaults to #general.
--  ``REPOSITORY``: Bitbucket repositories separated by comma, by default search all repos
+-  ``REPOS``: Bitbucket repositories separated by comma
+-  ``PROJECTS``: Bitbucket projects separated by comma
 
 Example
 ~~~~~~~
 
 .. code:: bash
 
-    $ OWNER="orgname" SLACK_API_TOKEN="token" BITBUCKET_USER="user" BUTBUCKET_PASSWORD="password" fifslack-bitbucket-pr-reminder
+    $ OWNER="orgname" SLACK_API_TOKEN="token" BITBUCKET_USER="user" BUTBUCKET_PASSWORD="password" PROJECTS="project" fifslack-bitbucket-pr-reminder
 
 Cronjob
 ~~~~~~~
@@ -50,7 +51,7 @@ Example that runs fifslack-bitbucket-pr-reminder every day at 10:00:
 
 .. code:: bash
 
-    0 10 * * * OWNER="orgname" SLACK_API_TOKEN="token" BITBUCKET_USER="user" BUTBUCKET_PASSWORD="password" REPOSITORY="repo1,repo2,repo3" fifslack-bitbucket-pr-reminder
+    0 10 * * * OWNER="orgname" SLACK_API_TOKEN="token" BITBUCKET_USER="user" BUTBUCKET_PASSWORD="password" PROJECTS="project" REPOS="repo1,repo2,repo3" fifslack-bitbucket-pr-reminder
 
 License
 -------

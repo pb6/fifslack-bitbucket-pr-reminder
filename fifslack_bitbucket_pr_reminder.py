@@ -11,6 +11,10 @@ REPOS = tuple(
     os.environ.get('REPOS', '').split(','),
 )
 
+PROJECTS = tuple(
+    os.environ.get('PROJECTS', '').split(','),
+)
+
 try:
     SLACK_API_TOKEN = os.environ['SLACK_API_TOKEN']
     BITBUCKET_USER = os.environ['BITBUCKET_USER']
@@ -45,15 +49,17 @@ def get_pr_info(repository):
 
 
 def format_pull_requests():
+    bitbucket = Bitbucket(
+        owner=OWNER, username=BITBUCKET_USER, password=BUTBUCKET_PASSWORD)
     lines = []
+
+    if PROJECTS[0]:
+        for project in PROJECTS:
+            for repo in bitbucket.get_repos_all(query='project.key="{}"'.format(project)):
+                lines = lines + get_pr_info(repo['slug'])
     if REPOS[0]:
         for repo in REPOS:
             lines = lines + get_pr_info(repo)
-    else:
-        bitbucket = Bitbucket(
-            owner=OWNER, username=BITBUCKET_USER, password=BUTBUCKET_PASSWORD)
-        for repo in bitbucket.get_repos_all():
-            lines = lines + get_pr_info(repo['name'])
     return lines
 
 
