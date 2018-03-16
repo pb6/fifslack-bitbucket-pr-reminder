@@ -33,7 +33,7 @@ Optional
    posted in, defaults to #general.
 -  ``REPOS``: Bitbucket repositories separated by comma
 -  ``PROJECTS``: Bitbucket projects separated by comma
--  ``IGNORE_REPOS``: Ignore repos by slug name
+-  ``IGNORE_REPOS``: Ignore repos by slug name separated by comma
 
 Example
 ~~~~~~~
