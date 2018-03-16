@@ -5,7 +5,7 @@ with open('README.rst', 'rb') as f:
 
 setup(
     name='fifslack-bitbucket-pr-reminder',
-    version='0.0.6',
+    version='0.0.7',
     url='http://github.com/ordenador/fifslack-bitbucket-pr-reminder',
     author='Mario Faundez',
     author_email='mariofaundez@hotmail.com',

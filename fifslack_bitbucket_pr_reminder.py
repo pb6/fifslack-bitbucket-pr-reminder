@@ -10,9 +10,11 @@ SLACK_CHANNEL = os.environ.get('SLACK_CHANNEL', '#general')
 REPOS = tuple(
     os.environ.get('REPOS', '').split(','),
 )
-
 PROJECTS = tuple(
     os.environ.get('PROJECTS', '').split(','),
+)
+IGNORE_REPOS = tuple(
+    os.environ.get('IGNORE_REPOS', '').split(','),
 )
 
 try:
@@ -33,6 +35,9 @@ look at:
 
 def get_pr_info(repository):
     lines = []
+    if IGNORE_REPOS[0]:
+        if repository in IGNORE_REPOS:
+            return lines
     bitbucket = Bitbucket(
         owner=OWNER, username=BITBUCKET_USER, password=BUTBUCKET_PASSWORD)
     pull_requests = bitbucket.get_pr(repository)
