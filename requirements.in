@@ -1,6 +1,7 @@
-fifbucket
-slackclient
+fifbucket == 0.7
+slackclient < 2.0.0
 flake8
 autopep8
 wheel
 twine
+pendulum
