@@ -5,6 +5,7 @@ from fifbucket.client import Bitbucket
 from slackclient import SlackClient
 import os
 import sys
+import pendulum
 
 SLACK_CHANNEL = os.environ.get('SLACK_CHANNEL', '#general')
 REPOS = tuple(
@@ -16,6 +17,11 @@ PROJECTS = tuple(
 IGNORE_REPOS = tuple(
     os.environ.get('IGNORE_REPOS', '').split(','),
 )
+HOURS = os.environ.get('HOURS')
+try:
+    HOURS = int(HOURS)
+except Exception:
+    HOURS = None
 
 try:
     SLACK_API_TOKEN = os.environ['SLACK_API_TOKEN']
@@ -41,15 +47,22 @@ def get_pr_info(repository):
     bitbucket = Bitbucket(
         owner=OWNER, username=BITBUCKET_USER, password=BUTBUCKET_PASSWORD)
     pull_requests = bitbucket.get_pr(repository)
+    now = pendulum.now()
     if pull_requests['size'] > 0:
         for pr in pull_requests['values']:
-            owner = 'falabellafif'
             html_url = pr['links']['html']['href']
             title = pr['title']
             creator = pr['author']['username']
-            line = '*[{0}/{1}]* <{2}|{3} - by {4}>'.format(
-                owner, repository, html_url, title, creator)
-            lines.append(line)
+            updated_on = pendulum.parse(pr['updated_on'])
+            if HOURS == None:
+                line = '*[{0}]* <{1}|{2} - by {3}>'.format(
+                    repository, html_url, title, creator)
+                lines.append(line)
+            else:
+                if now.subtract(hours=HOURS) >= updated_on:
+                    line = '*[{0}]* <{1}|{2} - by {3}> ({4}) {5}'.format(
+                        repository, html_url, title, creator, updated_on.diff_for_humans(), updated_on)
+                    lines.append(line)
     return lines
 
 
