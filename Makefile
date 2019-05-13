@@ -20,7 +20,7 @@ venv: requirements.txt
 
 pip-compile: venv
 	pip install pip-tools;\
-	pip-compile --output-file requirements.txt requirements.in
+	pip-compile --generate-hashes --output-file requirements.txt requirements.in
 
 clean:
 	rm -fr venv
@@ -32,8 +32,8 @@ autopep8: venv
 	autopep8 -i *.py
 
 run: venv
-	source .env;\
-	./fifslack-bitbucket-pr-reminder.py
+	source ./.env;\
+	./fifslack_bitbucket_pr_reminder.py
 
 build: venv
 	python setup.py sdist;\
