@@ -26,7 +26,7 @@ except Exception:
 try:
     SLACK_API_TOKEN = os.environ['SLACK_API_TOKEN']
     BITBUCKET_USER = os.environ['BITBUCKET_USER']
-    BUTBUCKET_PASSWORD = os.environ['BUTBUCKET_PASSWORD']
+    BITBUCKET_PASSWORD = os.environ['BITBUCKET_PASSWORD']
     OWNER = os.environ['OWNER']
 except KeyError as error:
     sys.stderr.write('Please set the environment variable {0}'.format(error))
@@ -45,7 +45,7 @@ def get_pr_info(repository):
         if repository in IGNORE_REPOS:
             return lines
     bitbucket = Bitbucket(
-        owner=OWNER, username=BITBUCKET_USER, password=BUTBUCKET_PASSWORD)
+        owner=OWNER, username=BITBUCKET_USER, password=BITBUCKET_PASSWORD)
     pull_requests = bitbucket.get_pr(repository)
     now = pendulum.now()
     if pull_requests['size'] > 0:
@@ -68,7 +68,7 @@ def get_pr_info(repository):
 
 def format_pull_requests():
     bitbucket = Bitbucket(
-        owner=OWNER, username=BITBUCKET_USER, password=BUTBUCKET_PASSWORD)
+        owner=OWNER, username=BITBUCKET_USER, password=BITBUCKET_PASSWORD)
     lines = []
 
     if PROJECTS[0]:
