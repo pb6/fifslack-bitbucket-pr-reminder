@@ -52,7 +52,7 @@ def get_pr_info(repository):
         for pr in pull_requests['values']:
             html_url = pr['links']['html']['href']
             title = pr['title']
-            creator = pr['author']['username']
+            creator = pr['author']['display_name']
             updated_on = pendulum.parse(pr['updated_on'])
             if HOURS == None:
                 line = '*[{0}]* <{1}|{2} - by {3}>'.format(

@@ -5,8 +5,8 @@ with open('README.rst', 'rb') as f:
 
 setup(
     name='fifslack-bitbucket-pr-reminder',
-    version='0.0.7',
-    url='http://github.com/ordenador/fifslack-bitbucket-pr-reminder',
+    version='0.0.8',
+    url='https://github.com/pb6/fifslack-bitbucket-pr-reminder',
     author='Mario Faundez',
     author_email='mariofaundez@hotmail.com',
     description='Posts a Slack reminder with a list of open pull requests for an organization',
